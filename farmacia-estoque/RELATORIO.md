@@ -1,7 +1,7 @@
 # Relatório — Sistema de Estoque de Medicamentos
 
-**Disciplina:** Programação Orientada a Objetos III  **Professor:** Daniel Corrêa da Silva
-**Aluno:** ______________________  **Curso:** ______________________
+**Disciplina:** Programação Orientada a Objetos II  **Professor:** Daniel Corrêa da Silva
+**Aluno:** Eric Faria dos Santos  **Curso:** Engenharia de Software - ESN4
 
 ## 1. Funcionalidades implementadas
 
