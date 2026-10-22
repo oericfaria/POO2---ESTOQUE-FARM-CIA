@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="ui.MedicamentoController"
+         tabClosingPolicy="UNAVAILABLE">
+
+    <!-- ===================== ABA 1: MEDICAMENTOS ===================== -->
+    <Tab text="Medicamentos">
+        <BorderPane>
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <top>
+                <VBox spacing="8">
+                    <TitledPane text="Dados do medicamento" collapsible="false">
+                        <GridPane hgap="10" vgap="8">
+                            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                                <ColumnConstraints halignment="RIGHT"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Código*" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtCodigo" promptText="7 caracteres, ex.: MED0001"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            <Label text="Nome*" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtNome" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                            <Label text="Descrição" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtDescricao" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            <Label text="Princípio ativo*" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtPrincipioAtivo" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                            <Label text="Validade*" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <DatePicker fx:id="dpValidade" maxWidth="Infinity"
+                                        GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                            <Label text="Qtd. estoque*" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtQuantidade" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                            <Label text="Preço (R$)*" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtPreco" promptText="ex.: 12,90"
+                                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                            <CheckBox fx:id="chkControlado" text="Medicamento controlado"
+                                      GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+                        </GridPane>
+                    </TitledPane>
+
+                    <TitledPane text="Fornecedor" collapsible="false">
+                        <GridPane hgap="10" vgap="8">
+                            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                                <ColumnConstraints halignment="RIGHT"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="CNPJ*" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtCnpj" promptText="00.000.000/0000-00"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            <Label text="Razão social*" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtRazaoSocial" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                            <Label text="Telefone*" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtTelefone" promptText="(62) 3000-0000"
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            <Label text="E-mail*" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtEmail" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                            <Label text="Cidade*" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <TextField fx:id="txtCidade" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                            <Label text="UF*" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                            <TextField fx:id="txtEstado" promptText="ex.: GO" maxWidth="80"
+                                       GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                        </GridPane>
+                    </TitledPane>
+
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Button fx:id="btnCadastrar" text="Cadastrar" defaultButton="true"
+                                onAction="#aoCadastrar"/>
+                        <Button text="Limpar formulário" onAction="#aoLimpar"/>
+                        <Separator orientation="VERTICAL"/>
+                        <Label text="Código:"/>
+                        <TextField fx:id="txtBusca" promptText="Consultar por código" prefWidth="180"
+                                   onAction="#aoConsultar"/>
+                        <Button text="Consultar" onAction="#aoConsultar"/>
+                        <Button text="Listar todos" onAction="#aoListarTodos"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="btnExcluir" text="Excluir selecionado" onAction="#aoExcluir"/>
+                    </HBox>
+                </VBox>
+            </top>
+
+            <center>
+                <TableView fx:id="tabela">
+                    <BorderPane.margin><Insets top="10"/></BorderPane.margin>
+                    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="colCodigo" text="Código"/>
+                        <TableColumn fx:id="colNome" text="Nome"/>
+                        <TableColumn fx:id="colPrincipioAtivo" text="Princípio ativo"/>
+                        <TableColumn fx:id="colValidade" text="Validade"/>
+                        <TableColumn fx:id="colQuantidade" text="Qtd."/>
+                        <TableColumn fx:id="colPreco" text="Preço"/>
+                        <TableColumn fx:id="colControlado" text="Controlado"/>
+                        <TableColumn fx:id="colFornecedor" text="Fornecedor"/>
+                    </columns>
+                </TableView>
+            </center>
+
+            <bottom>
+                <Label fx:id="lblStatus" text="Pronto.">
+                    <BorderPane.margin><Insets top="8"/></BorderPane.margin>
+                </Label>
+            </bottom>
+        </BorderPane>
+    </Tab>
+
+    <!-- ===================== ABA 2: RELATÓRIOS ===================== -->
+    <Tab text="Relatórios">
+        <BorderPane>
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <top>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Relatório:"/>
+                    <ComboBox fx:id="cbRelatorio" prefWidth="380"/>
+                    <Button text="Gerar" onAction="#aoGerarRelatorio"/>
+                </HBox>
+            </top>
+            <center>
+                <TextArea fx:id="txtRelatorio" editable="false" wrapText="false"
+                          style="-fx-font-family: 'Monospaced';">
+                    <BorderPane.margin><Insets top="10"/></BorderPane.margin>
+                </TextArea>
+            </center>
+        </BorderPane>
+    </Tab>
+</TabPane>
